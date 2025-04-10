@@ -1,0 +1,44 @@
+<!-- templates/phishing.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phishing Link Detector</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Phishing Link Detector</h1>
+  <label for="urlInput">Enter URL:</label>
+  <input type="text" id="urlInput" placeholder="e.g. https://example.com">
+  <button onclick="checkPhishing()">Check Phishing Risk</button>
+  <h2>Result:</h2>
+  <p id="resultBox">Waiting for analysis...</p>
+
+  <script>
+    // Function to check phishing URL
+    function checkPhishing() {
+      const url = document.getElementById('urlInput').value;
+      
+      if (!url) {
+        alert("Please enter a URL");
+        return;
+      }
+
+      // Send URL to backend for analysis
+      fetch('/check_phishing', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ url: url })
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("resultBox").innerText = `Risk: ${data.riskLevel}`;
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+  </script>
+</body>
+</html>

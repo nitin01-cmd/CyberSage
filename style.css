@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #f4f4f9;
+  }
+  
+  h1 {
+    color: #333;
+  }
+  
+  input, button {
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  
+  #resultBox {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  
